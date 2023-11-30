@@ -1,0 +1,13 @@
+version: "3"
+services:
+  reverse_proxy:
+    image: haproxy:2.9-dev4
+    container_name: haproxy_mssql
+    restart: always
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    ports:
+      - 1433:1433
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    
